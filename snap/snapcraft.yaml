@@ -57,7 +57,6 @@ grade: devel
 confinement: strict
 architectures:
   - build-on: amd64
-  - build-on: aarch64
   - build-on: arm64
   - build-on: armhf
 icon: snap/local/desktop/torguard.png
@@ -81,17 +80,17 @@ parts:
       echo "-----------------------------------------------"
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
       if [ $SNAPCRAFT_ARCH_TRIPLET = "x86_64-linux-gnu" ]; then
-        #* Supports ARM Arch (64Bit only)
+        # Supports ARM Arch (64Bit only)
         wget https://torguard.net/downloads/torguard-latest-amd64.deb
         dpkg -x torguard-latest-amd64.deb ${SNAPCRAFT_PART_INSTALL}
       fi
       if [ $SNAPCRAFT_ARCH_TRIPLET = "aarch64-linux-gnu" ]; then
-        #* Supports ARM Arch (64Bit only)
+        # Supports ARM Arch (64Bit only)
         wget https://torguard.net/downloads/torguard-v4.3.1.test.arm64.deb
         dpkg -x torguard-v4.3.1.test.arm64.deb ${SNAPCRAFT_PART_INSTALL}
       fi
       if [ $SNAPCRAFT_ARCH_TRIPLET = "arm-linux-gnueabi" ]; then
-        #* Supports ARM Arch (64Bit only)
+        # Supports ARM Arch (32Bit only)
         wget https://torguard.net/downloads/torguard-v4.2.1-beta-arm32.deb
         dpkg -x torguard-v4.2.1-beta-arm32.deb ${SNAPCRAFT_PART_INSTALL}
       fi
