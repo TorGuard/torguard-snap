@@ -112,6 +112,7 @@ parts:
       - qtwayland5
       - ca-certificates
       - desktop-file-utils
+      - libgtk-3-0
     after:
       - patches
   patches:
