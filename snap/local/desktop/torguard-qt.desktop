@@ -1,0 +1,16 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=Torguard VPN Client SNAP
+Comment=TorGuard VPN Software
+GenericName=TorGuard VPN QT client
+Exec=torguard.qt %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/torguard.png
+MimeType=x-scheme-handler/torguard;
+Categories=Network;Security;
+Keywords=internet;vpn;xtorguard;qt;wireguard;openvpn;openconnect;sshtunnel;snap;
+StartupNotify=false
+Name[en_US]=torguard-qt

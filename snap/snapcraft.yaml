@@ -1,0 +1,124 @@
+# Copyright (c) 2020 TorGuard forum user 19807409
+name: torguard
+base: core18
+version: 4.2.1
+summary:   Browse and Download Safely with TorGuard Anonymous VPN
+description: |
+  With all the security issues created by hackers,
+  net censorship, identity theft, and ISP's monitoring activities,
+  your online privacy has never been more threatened or important.
+  TorGuard's goal is to provide easy to use services that protect
+  your online identity. Don't risk your personal privacy! 
+  
+  - Anonymous VPN Service
+    Anonymize and Encrypt all web Traffic through Private VPN Service
+  - Anonymous Proxy
+    Hide your IP address on Chrome, Firefox or Bittorrent
+  - Stealth VPN
+    Bypass DPI Firewalls and VPN Blocks with TorGuard Stealth VPN
+  - Private Email
+    Communicate in Complete Security with OpenPGP email Encryption
+  
+  This package includes following binaries:
+  
+    torguard,openvpn, ss-local, torguard-wrapper
+    openconnect,stunnel,vpnc-script
+  
+  Default homefolder:
+  
+    ~/snap/torguard/common/.local/share/VPNetworkLLC/TorGuard
+  
+  How to launch snap binaries in terminal?:
+  
+    torguard.qt     - launches TorGuard VPN Client (torguard)
+  
+  Documentation and wiki:
+  
+  - Forum (official):   https://forums.torguard.net/
+  
+  Get source code from Github: https://github.com/TorGuard/TorGuard.git
+  
+  Contact us on social networks and forums:
+  
+  - Instagram: https://www.instagram.com/torguardvpn
+  - LinkedIn:  https://linkedin.com/company/torguard
+  - Twitter:   https://twitter.com/TorGuard
+  - Reddit:    https://www.reddit.com/user/TorGuardVPN
+  - Facebook:  https://facebook.com/TorGuard
+  - Youtube:   https://youtube.com/channel/UCQbQmrWFt1-p8XroaXsvefw
+  - Email:     helpdesk@torguard.net
+  
+  - Feature request: https://tinyurl.com/y5ds7s3t
+  - I need help/support: https://tinyurl.com/yy6xa3p4
+  - Report a bug: https://tinyurl.com/y5wzybwe
+  - Report some random issue: https://tinyurl.com/y5cgm2vp
+  - Testing Report: https://tinyurl.com/y39n2hsv
+grade: devel
+confinement: strict
+icon: snap/local/desktop/torguard.png
+apps:
+  qt:
+    command: torguard
+    plugs: [network, network-bind, network-status, unity7, desktop, desktop-legacy, wayland, x11, mir, opengl, home, gsettings, removable-media, screen-inhibit-control, pulseaudio, media-hub]
+    desktop: torguard-qt.desktop
+    environment:
+      QT_XKB_CONFIG_ROOT: $SNAP_USER_DATA:$SNAP/usr/share:$QT_XKB_CONFIG_ROOT
+      XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
+parts:
+  torguard:
+    source: https://github.com/TorGuard/torguard-snap
+    source-type: git
+    source-tag: master
+    plugin: nil
+    override-build: |
+      echo "ARCH TRIPPLET: ${SNAPCRAFT_ARCH_TRIPLET}"
+      cd ${SNAPCRAFT_PART_BUILD}
+      echo "-----------------------------------------------"
+      echo "+++++++++++++++++++++++++++++++++++++++++++++++"
+      if [ $SNAPCRAFT_ARCH_TRIPLET = "x86_64-linux-gnu" ]; then
+        #* Supports ARM Arch (64Bit only)
+        wget https://torguard.net/downloads/torguard-latest-amd64.deb
+        dpkg -x torguard-latest-amd64.deb ${SNAPCRAFT_PART_INSTALL}
+      fi
+      if [ $SNAPCRAFT_ARCH_TRIPLET = "aarch64-linux-gnu" ]; then
+        #* Supports ARM Arch (64Bit only)
+        wget https://torguard.net/downloads/torguard-v4.3.1.test.arm64.deb
+        dpkg -x torguard-v4.3.1.test.arm64.deb ${SNAPCRAFT_PART_INSTALL}
+      fi
+      if [ $SNAPCRAFT_ARCH_TRIPLET = "arm-linux-gnueabi" ]; then
+        #* Supports ARM Arch (64Bit only)
+        wget https://torguard.net/downloads/torguard-v4.2.1-beta-arm32.deb
+        dpkg -x torguard-v4.2.1-beta-arm32.deb ${SNAPCRAFT_PART_INSTALL}
+      fi
+      echo "-----------------------------------------------"
+      echo "+++++++++++++++++++++++++++++++++++++++++++++++"
+      echo "INSTALATION OF ${BINPREF}-${SNAPCRAFT_PROJECT_VERSION}-snap has finished" # List installed files and vars when installation is finished
+      echo "+++++++++++++++++++++++++++++++++++++++++++++++"
+      find ${SNAPCRAFT_PART_INSTALL} -type f
+      env
+      echo "-----------------------------------------------+"
+    build-packages:
+      - wget
+    stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - shared-mime-info
+      - libqt5gui5
+      - libgdk-pixbuf2.0-0
+      - libqt5svg5 # for loading icon themes which are svg
+      - locales-all
+      - qtwayland5
+      - ca-certificates
+      - desktop-file-utils
+    after:
+      - patches
+  patches:
+    source: snap/local/patches
+    plugin: dump
+    prime:
+      - -*
+  desktop:
+    source: snap/local/desktop
+    plugin: dump
