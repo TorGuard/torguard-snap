@@ -126,6 +126,8 @@ parts:
       - openconnect
       - vpnc-scripts
       - openvpn
+      - libatm1
+      - libgtk2.0-0
     after:
       - patches
   patches:
