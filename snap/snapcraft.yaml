@@ -120,6 +120,12 @@ parts:
       - qtwayland5
       - ca-certificates
       - desktop-file-utils
+      - wireguard
+      - wireguard-tools
+      - wireguard-dkms
+      - openconnect
+      - vpnc-scripts
+      - openvpn
     after:
       - patches
   patches:
