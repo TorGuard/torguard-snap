@@ -59,6 +59,9 @@ architectures:
   - build-on: amd64
   - build-on: arm64
   - build-on: armhf
+  #- build-on: i386
+  #- build-on: ppc64el
+  #- build-on: s390x
 icon: snap/local/desktop/torguard.png
 apps:
   qt:
@@ -117,8 +120,6 @@ parts:
       - qtwayland5
       - ca-certificates
       - desktop-file-utils
-      - libgtk-3-0
-      - libgtk-3-dev
     after:
       - patches
   patches:
