@@ -68,7 +68,7 @@ parts:
   torguard:
     source: https://github.com/TorGuard/torguard-snap
     source-type: git
-    source-tag: master
+    source-tag: main
     plugin: nil
     override-build: |
       echo "ARCH TRIPPLET: ${SNAPCRAFT_ARCH_TRIPLET}"
