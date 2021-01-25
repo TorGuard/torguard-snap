@@ -1,7 +1,7 @@
 # Copyright (c) 2020 TorGuard forum user 19807409
 name: torguard
 base: core18
-version: 4.2.1
+version: 4.2.1-beta
 summary:   Browse and Download Safely with TorGuard Anonymous VPN
 description: |
   With all the security issues created by hackers,
@@ -56,8 +56,8 @@ description: |
 grade: devel
 confinement: strict
 architectures:
-  - build-on: amd64
-  - build-on: arm64
+  #- build-on: amd64
+  #- build-on: arm64
   - build-on: armhf
   #- build-on: i386
   #- build-on: ppc64el
