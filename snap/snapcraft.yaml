@@ -92,7 +92,7 @@ parts:
         wget https://torguard.net/downloads/torguard-v4.3.1.test.arm64.deb
         dpkg -x torguard-v4.3.1.test.arm64.deb ${SNAPCRAFT_PART_INSTALL}
       fi
-      if [ $SNAPCRAFT_ARCH_TRIPLET = "arm-linux-gnueabi" ]; then
+      if [ $SNAPCRAFT_ARCH_TRIPLET = "arm-linux-gnueabihf" ]; then
         # Supports ARM Arch (32Bit only)
         wget https://torguard.net/downloads/torguard-v4.2.1-beta-arm32.deb
         dpkg -x torguard-v4.2.1-beta-arm32.deb ${SNAPCRAFT_PART_INSTALL}
